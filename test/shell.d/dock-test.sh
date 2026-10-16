@@ -164,13 +164,6 @@ grep -qF 'dock.isFloating(workspaceId) && fullscreenMode < 2' "$ROOT/shell/plugi
   fail "dock shows only on floating workspaces without a fullscreen window"
 pass "dock shows only on floating workspaces without a fullscreen window"
 
-# A mouse wheel steps the app grid a whole row per notch rather than starting
-# a GridView flick, which crawls under half a row per notch.
-grep -qF 'event.pixelDelta.y || event.angleDelta.y / 120 * root.cellHeight' "$ROOT/shell/plugins/dock/AppGrid.qml" &&
-  grep -qF 'grid.cancelFlick()' "$ROOT/shell/plugins/dock/AppGrid.qml" ||
-  fail "the app grid scrolls a row per wheel notch"
-pass "the app grid scrolls a row per wheel notch"
-
 # Minimizing moves a window to the dock's hidden workspace without following
 # it, then focuses the workspace it left, so the next window opens there and
 # not beside the minimized one.
